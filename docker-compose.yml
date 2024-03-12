@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: terraform_app
+    image: hashicorp/terraform:1.8.0-alpha20240228
+    volumes:
+      - ~/.aws:/root/.aws
+      - .:/src
+    working_dir: /src
+    entrypoint: terraform
+    command: version
+    environment:
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+      - AWS_REGION=${AWS_REGION}
